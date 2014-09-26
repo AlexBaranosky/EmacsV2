@@ -60,7 +60,7 @@
 (rename-modeline "js2-mode" js2-mode "JS2")
 (rename-modeline "clojure-mode" clojure-mode "CLJ")
 ;; (rename-modeline "emacs-lisp-mode" emacs-lisp-mode "ELisp") ;; TODO: does it work?
-  
+
 (add-to-list
  'auto-mode-alist
  '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
@@ -91,3 +91,14 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-indent-mode t)
+            (org-toggle-inline-images)
+            (toggle-truncate-lines)
+            (turn-on-font-lock)
+            (define-key org-mode-map "\C-cl" 'org-store-link)
+            (define-key org-mode-map "\C-ca" 'org-agenda)
+            (define-key org-mode-map "\C-cb" 'org-iswitchb)
+            t))
