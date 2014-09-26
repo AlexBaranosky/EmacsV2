@@ -79,8 +79,8 @@
 (workgroups-mode 1)
 (wg-load "~/.emacs.d/emacs_workgroups")
 
-(require 'mustache-mode)
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . mustache-mode))
+;; (require 'mustache-mode)
+;; (add-to-list 'auto-mode-alist '("\\.mustache" . mustache-mode))
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))

@@ -21,4 +21,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (load "~/.emacs.d/core.el")
 (load "~/.emacs.d/catchall.el")
+(load "~/.emacs.d/cider-mode++.el")
+(load "~/.emacs.d/clojure-mode++.el")
+(load "~/.emacs.d/erc++.el")
+(load "~/.emacs.d/ido++.el")
+(load "~/.emacs.d/magit++.el")
+(load "~/.emacs.d/projectile++.el")
+(load "~/.emacs.d/ruby++.el")
 (load "~/.emacs.d/user.el")
