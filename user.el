@@ -35,7 +35,7 @@
 (add-to-list 'load-path "~/.emacs.d/themes")
 ;; Uncomment this to increase font size
 ;; (set-face-attribute 'default nil :height 140)
-(load-theme 'tomorrow-night-bright t)
+(load-theme 'solarized-dark t)
 
 ;; Flyspell often slows down editing so it's turned off
 (remove-hook 'text-mode-hook 'turn-on-flyspell)
