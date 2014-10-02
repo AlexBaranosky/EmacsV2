@@ -5,3 +5,5 @@
 places
 .places
 emacs_workgroups
+.mc-lists.el
+bookmarks
