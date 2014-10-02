@@ -189,6 +189,16 @@ buffer is not visiting a file."
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent yes-or-no-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent y-or-n-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+
 (global-set-key (kbd "S-C-<left>")  'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>")  'shrink-window)
@@ -304,6 +314,6 @@ buffer is not visiting a file."
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 112 97 return 93 91 backspace 91 left 32 40 108 101 116 backspace backspace backspace backspace 134217848 112 return 40 108 101 116 67108905 M-left left return 3 110] 0 "%d")) arg)))
 
 (fset 'todo-comment
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([59 59 32 84 79 68 79 58 33554464 65 108 101 120 32 45 32 134217848 101 109 97 99 115 45 backspace 43 43 45 105 110 115 101 114 116 45 100 97 116 101 return 32 45 32] 0 "%d")) arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([59 59 32 84 79 68 79 58 33554464 65 108 101 120 32 45 32 134217848 101 109 97 99 115 45 backspace 43 43 45 105 110 115 101 114 116 45 100 97 116 101 return 32 45 32] 0 "%d")) arg)))
 
 (global-set-key [(super t)] 'todo-comment)

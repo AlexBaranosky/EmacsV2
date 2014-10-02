@@ -1,4 +1,5 @@
 (require 'clojure-mode)
+(require 'clj-refactor)
 
 (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode))
 (add-hook 'clojure-mode-hook 'paredit-mode)
