@@ -1,3 +1,5 @@
+(require 'projectile)
+
 (defun projectile-cleanup-project-buffers ()
   (interactive)
   (dolist (buffer (projectile-project-buffer-names))
