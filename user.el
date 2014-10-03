@@ -50,3 +50,5 @@
 
 ;; Save here instead of littering current directory with emacs backup files
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+(require 'wgrep)
