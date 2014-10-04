@@ -102,3 +102,6 @@
             (define-key org-mode-map "\C-ca" 'org-agenda)
             (define-key org-mode-map "\C-cb" 'org-iswitchb)
             t))
+
+(require 'floobits)
+(key-chord-define-global "fb" 'floobits-summon)
