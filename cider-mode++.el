@@ -11,9 +11,9 @@
 
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-mode))
-(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'cider-mode))
+;;(add-hook 'cider-mode-hook 'ac-nrepl-setup)
 (setq clojure-font-lock-comment-sexp t)
 
 (defun cider-p-eval-last-sexp ()
