@@ -2,6 +2,7 @@
 (require 'clj-refactor)
 
 (add-to-list 'auto-mode-alist '("\\.edn*" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.clj*" . clojure-mode))
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
 (defun clj-refactor-stuff ()
@@ -9,8 +10,6 @@
   (cljr-add-keybindings-with-prefix "C-c C-x"))
 
 (add-hook 'clojure-mode-hook 'clj-refactor-stuff)
-
-(print clojure-mode-hook)
 
 (define-key clojure-mode-map (kbd "C->") 'cljr-thread)
 (define-key clojure-mode-map (kbd "C-<") 'cljr-unwind)
