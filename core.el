@@ -304,6 +304,7 @@ buffer is not visiting a file."
 (setq ring-bell-function (lambda () (message "*beep*")))
 (setq custom-file "~/.emacs.d/custom.el")
 
+(global-set-key "\C-c\C-d" "\C-a\C- \C-e\M-w\C-j\C-y")
 
 ;;; Auto-created fns from keyboard macros
 
