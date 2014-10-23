@@ -10,14 +10,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (set-exec-path-from-shell-PATH)
 
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; (add-to-list 'package-archives
-;;              '("tromey" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages") t)
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages") t)
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages")
+                         ;; ("melpa-stable" . "http://melpa-stable.milkbox.net/packages")
+                         ))
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -33,5 +31,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (load "~/.emacs.d/ruby++.el")
 (load "~/.emacs.d/floobits/floobits.el")
 (load "~/.emacs.d/git-timemachine.el")
+(load "~/.emacs.d/scss-mode.el")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
+(load "~/.emacs.d/el/neotree/neotree.el")
 (load "~/.emacs.d/catchall.el")
 (load "~/.emacs.d/user.el")

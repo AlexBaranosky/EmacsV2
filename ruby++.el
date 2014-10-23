@@ -39,13 +39,13 @@
     (define-key m [f6] 'recompile)))
 
 ;; Robe
-(after-load 'ruby-mode
-  (add-hook 'ruby-mode-hook 'robe-mode))
-(after-load 'robe
-  (add-hook 'robe-mode-hook
-            (lambda ()
-              (add-to-list 'ac-sources 'ac-source-robe)
-              (set-auto-complete-as-completion-at-point-function))))
+;; (after-load 'ruby-mode
+;;   (add-hook 'ruby-mode-hook 'robe-mode))
+;; (after-load 'robe
+;;   (add-hook 'robe-mode-hook
+;;             (lambda ()
+;;               (add-to-list 'ac-sources 'ac-source-robe)
+;;               (set-auto-complete-as-completion-at-point-function))))
 
 ;; ERB
 (defun sanityinc/ensure-mmm-erb-loaded ()

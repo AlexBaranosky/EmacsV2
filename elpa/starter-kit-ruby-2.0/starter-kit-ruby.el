@@ -92,9 +92,10 @@ exec-to-string command, but it works and seems fast"
                (delete-region (point-min) (point-max))))))
        (ad-activate 'ruby-do-run-w/compilation)))
 
-  (add-hook 'ruby-mode-hook 'esk-run-coding-hook)
   (add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
-
+  ;;(add-hook 'ruby-mode-hook 'esk-run-coding-hook)
+  ;;(remove-hook 'ruby-mode-hook 'esk-run-coding-hook)
+  
   ;; Rinari (Minor Mode for Ruby On Rails)
   (setq rinari-major-modes
         (list 'mumamo-after-change-major-mode-hook 'dired-mode-hook 'ruby-mode-hook

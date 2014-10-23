@@ -92,16 +92,35 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (org-indent-mode t)
             (org-toggle-inline-images)
             (toggle-truncate-lines)
             (turn-on-font-lock)
+            ;; (setq org-fontify-emphasized-text t)
             (define-key org-mode-map "\C-cl" 'org-store-link)
             (define-key org-mode-map "\C-ca" 'org-agenda)
             (define-key org-mode-map "\C-cb" 'org-iswitchb)
+            (setq org-agenda-files '("~/Dropbox/org/cards.txt"
+                                     "~/Dropbox/org/investment.txt"
+                                     "~/Dropbox/org/mike.txt"))
+            (setq org-todo-keywords
+                  '((sequence "TODO" "MAYBE" "INPROGRESS" "|" "DONE" "DELEGATED_PAULA")))
             t))
 
 (require 'floobits)
 (key-chord-define-global "fb" 'floobits-summon)
+
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+(add-hook 'neotree-mode-hook (lambda ()
+                               (neotree-hidden-file-toggle)))
+
+;; (setq 'neo-show-updir-line nil)
