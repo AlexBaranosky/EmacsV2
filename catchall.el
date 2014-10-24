@@ -97,6 +97,19 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 
+(require 'org)
+(define-key org-mode-map "\C-cl" 'org-store-link)
+(define-key org-mode-map "\C-ca" 'org-agenda)
+(define-key org-mode-map "\C-cb" 'org-iswitchb)
+(setq org-agenda-files '("~/Dropbox/org/cards.txt"
+                         "~/Dropbox/org/investment.txt"
+                         "~/Dropbox/org/mike.txt"))
+(setq org-agenda-custom-commands '())
+(add-to-list 'org-agenda-custom-commands
+             '("c" "Current Buffer" todo ""
+               ((org-agenda-files (list (buffer-file-name))))))
+(setq org-todo-keywords
+      '((sequence "TODO" "MAYBE" "INPROGRESS" "DELEGATED_PAULA" "|" "DONE")))
 (add-hook 'org-mode-hook
           (lambda ()
             (org-indent-mode t)
@@ -104,14 +117,6 @@
             (toggle-truncate-lines)
             (turn-on-font-lock)
             ;; (setq org-fontify-emphasized-text t)
-            (define-key org-mode-map "\C-cl" 'org-store-link)
-            (define-key org-mode-map "\C-ca" 'org-agenda)
-            (define-key org-mode-map "\C-cb" 'org-iswitchb)
-            (setq org-agenda-files '("~/Dropbox/org/cards.txt"
-                                     "~/Dropbox/org/investment.txt"
-                                     "~/Dropbox/org/mike.txt"))
-            (setq org-todo-keywords
-                  '((sequence "TODO" "MAYBE" "INPROGRESS" "|" "DONE" "DELEGATED_PAULA")))
             t))
 
 (require 'floobits)
@@ -122,5 +127,37 @@
 
 (add-hook 'neotree-mode-hook (lambda ()
                                (neotree-hidden-file-toggle)))
-
 ;; (setq 'neo-show-updir-line nil)
+
+(add-to-list 'load-path "~/.emacs.d/vendor")
+
+;; shell scripts
+(setq-default sh-basic-offset 2)
+(setq-default sh-indentation 2)
+
+;; Themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/themes")
+;; Uncomment this to increase font size
+;; (set-face-attribute 'default nil :height 140)
+(load-theme 'solarized-dark t)
+
+;; Flyspell often slows down editing so it's turned off
+(remove-hook 'text-mode-hook 'turn-on-flyspell)
+
+(load "~/.emacs.d/vendor/clojure")
+
+;; hippie expand - don't try to complete with file names
+(setq hippie-expand-try-functions-list (delete 'try-complete-file-name hippie-expand-try-functions-list))
+(setq hippie-expand-try-functions-list (delete 'try-complete-file-name-partially hippie-expand-try-functions-list))
+
+(setq ido-use-filename-at-point nil)
+
+;; Save here instead of littering current directory with emacs backup files
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(require 'wgrep)
+
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)

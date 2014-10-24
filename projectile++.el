@@ -38,22 +38,6 @@
         (cljr-remove-unused-requires)
         (cleanup-file filename)))))
 
-(defun projectile-cleanup-project-furtive-files ()
-  (interactive)
-  (projectile-cleanup-project-x-files "[furtive.dev :refer :all]"))
-
-(defun projectile-cleanup-project-betelgeuse-files ()
-  (interactive)
-  (projectile-cleanup-project-x-files "[betelgeuse.dev :refer :all]"))
-
-(defun projectile-cleanup-project-drive-files ()
-  (interactive)
-  (projectile-cleanup-project-x-files "[drive.dev :refer :all]"))
-
-(defun projectile-cleanup-project-slarti-files ()
-  (interactive)
-  (projectile-cleanup-project-x-files "[slartibartfast.dev :refer :all]"))
-
 (defun projectile-cleanup-project-clj-files ()
   (interactive)
   (dolist (filename (projectile-current-project-file-full-paths))
