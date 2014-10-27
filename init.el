@@ -29,6 +29,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (load "~/.emacs.d/magit++.el")
 (load "~/.emacs.d/projectile++.el")
 (load "~/.emacs.d/ruby++.el")
+(load "~/.emacs.d/org-mode++.el")
 (load "~/.emacs.d/floobits/floobits.el")
 (load "~/.emacs.d/git-timemachine.el")
 (load "~/.emacs.d/scss-mode.el")
