@@ -106,17 +106,35 @@
         (todo priority-down category-up)
         (tags priority-down category-keep)
         (search category-keep)))
-(setq org-agenda-custom-commands '())
-(add-to-list 'org-agenda-custom-commands
-             '("c" "Current Buffer" todo ""
-               ((org-agenda-files (list (buffer-file-name)))
-                (org-agenda-sorting-strategy '(priority-down todo-state-up)))))
-(add-to-list 'org-agenda-custom-commands
-             '("d" "Upcoming deadlines" agenda ""
-               ((org-agenda-time-grid nil)
-                (org-deadline-warning-days 93)
-                (org-agenda-entry-types '(:deadline))
-                )))
+
+;; make Excel spreadsheets open in Excel/Numbers/OpenOffice
+(add-to-list 'org-file-apps '("\\.xls\\'" . default))
+(add-to-list 'org-file-apps '("\\.xlsx\\'" . default))
+
+(setq org-agenda-files '("~/Dropbox/org/cards.txt"
+                         "~/Dropbox/org/investment.txt"
+                         "~/Dropbox/org/mike.txt"))
+
+(setq org-agenda-custom-commands
+      '(("w" "Work" todo ""
+         ((org-agenda-files (list "~/worg/cardsw.org"))
+          (org-agenda-sorting-strategy '(priority-down todo-state-up))))
+
+        ("1" "Work Deadlines" agenda ""
+         ((org-agenda-files (list "~/worg/cardsw.org"))
+          (org-agenda-time-grid nil)
+          (org-deadline-warning-days 28)
+          (org-agenda-entry-types '(:deadline))))
+
+        ("c" "Current Buffer" todo ""
+         ((org-agenda-files (list (buffer-file-name)))
+          (org-agenda-sorting-strategy '(priority-down todo-state-up))))
+
+        ("d" "Upcoming deadlines" agenda ""
+         ((org-agenda-time-grid nil)
+          (org-deadline-warning-days 93)
+          (org-agenda-entry-types '(:deadline))))))
+
 (setq org-todo-keywords
       '((sequence "MAYBE" "TODO" "IN_PROGRESS" "BLOCKED_ON" "DELEGATED_PAULA" "|" "DONE")))
 
