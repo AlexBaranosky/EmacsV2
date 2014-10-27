@@ -101,15 +101,19 @@
 (define-key org-mode-map "\C-cl" 'org-store-link)
 (define-key org-mode-map "\C-ca" 'org-agenda)
 (define-key org-mode-map "\C-cb" 'org-iswitchb)
-(setq org-agenda-files '("~/Dropbox/org/cards.txt"
-                         "~/Dropbox/org/investment.txt"
-                         "~/Dropbox/org/mike.txt"))
 (setq org-agenda-custom-commands '())
 (add-to-list 'org-agenda-custom-commands
              '("c" "Current Buffer" todo ""
-               ((org-agenda-files (list (buffer-file-name))))))
+               ((org-agenda-files (list (buffer-file-name)))
+                (org-agenda-sorting-strategy '(priority-down todo-state-up)))))
+(add-to-list 'org-agenda-custom-commands
+             '("d" "Upcoming deadlines" agenda ""
+               ((org-agenda-time-grid nil)
+                (org-deadline-warning-days 93)
+                (org-agenda-entry-types '(:deadline))
+                )))
 (setq org-todo-keywords
-      '((sequence "TODO" "MAYBE" "IN_PROGRESS" "BLOCKED_ON" "DELEGATED_PAULA" "|" "DONE")))
+      '((sequence "MAYBE" "TODO" "IN_PROGRESS" "BLOCKED_ON" "DELEGATED_PAULA" "|" "DONE")))
 
 (add-hook 'org-mode-hook
           (lambda ()
