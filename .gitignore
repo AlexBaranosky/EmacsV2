@@ -8,3 +8,4 @@ emacs_workgroups
 .mc-lists.el
 bookmarks
 user.el
+tramp
