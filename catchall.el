@@ -101,6 +101,11 @@
 (define-key org-mode-map "\C-cl" 'org-store-link)
 (define-key org-mode-map "\C-ca" 'org-agenda)
 (define-key org-mode-map "\C-cb" 'org-iswitchb)
+(setq org-agenda-sorting-strategy
+      '((agenda priority-down todo-state-up)
+        (todo priority-down category-up)
+        (tags priority-down category-keep)
+        (search category-keep)))
 (setq org-agenda-custom-commands '())
 (add-to-list 'org-agenda-custom-commands
              '("c" "Current Buffer" todo ""
