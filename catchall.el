@@ -109,15 +109,23 @@
              '("c" "Current Buffer" todo ""
                ((org-agenda-files (list (buffer-file-name))))))
 (setq org-todo-keywords
-      '((sequence "TODO" "MAYBE" "INPROGRESS" "DELEGATED_PAULA" "|" "DONE")))
+      '((sequence "TODO" "MAYBE" "IN_PROGRESS" "BLOCKED_ON" "DELEGATED_PAULA" "|" "DONE")))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (org-indent-mode t)
             (org-toggle-inline-images)
             (toggle-truncate-lines)
             (turn-on-font-lock)
+            (setq org-src-fontify-natively t)
+            (setq org-agenda-start-with-follow-mode t)
             ;; (setq org-fontify-emphasized-text t)
             t))
+
+;; (add-hook 'org-mode-agenda-hook
+;;           (lambda ()
+;;             (org-agenda-follow-mode)
+;;             ))
 
 (require 'floobits)
 (key-chord-define-global "fb" 'floobits-summon)
