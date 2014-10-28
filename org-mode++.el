@@ -1,4 +1,6 @@
 (require 'org)
+(require 'ob-clojure)
+(setq org-babel-clojure-backend 'cider)
 
 (define-key org-mode-map "\C-cl" 'org-store-link)
 (define-key org-mode-map "\C-ca" 'org-agenda)
@@ -8,8 +10,13 @@
 (add-to-list 'org-file-apps '("\\.xls\\'" . default))
 (add-to-list 'org-file-apps '("\\.xlsx\\'" . default))
 
+(setq org-agenda-include-diary t)
 (setq org-src-fontify-natively t)
 (setq org-agenda-start-with-follow-mode t)
+
+(setq org-highest-priority ?G)
+(setq org-default-priority ?I)
+(setq org-lowest-priority ?O)
 
 (setq org-agenda-files '("~/Dropbox/org/cards.txt"
                          "~/Dropbox/org/investment.txt"
@@ -22,7 +29,7 @@
         (search category-keep)))
 
 (setq org-agenda-custom-commands
-      '(("w" "Work" todo ""
+      '(("w" "Work Todo" todo ""
          ((org-agenda-files (list "~/worg/cardsw.org"))
           (org-agenda-sorting-strategy '(priority-down todo-state-up))))
 
@@ -36,7 +43,7 @@
          ((org-agenda-files (list (buffer-file-name)))
           (org-agenda-sorting-strategy '(priority-down todo-state-up))))
 
-        ("d" "Upcoming deadlines" agenda ""
+        ("d" "3-month Deadlines" agenda ""
          ((org-agenda-time-grid nil)
           (org-deadline-warning-days 93)
           (org-agenda-entry-types '(:deadline))))))
@@ -50,3 +57,5 @@
             (org-toggle-inline-images)
             (toggle-truncate-lines)
             (turn-on-font-lock)))
+
+
