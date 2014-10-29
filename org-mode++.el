@@ -22,15 +22,19 @@
 (setq org-lowest-priority ?O)
 
 (setq org-capture-templates
-      '(("W" "Work Notes" plain (file "~/worg/cardsw.org")
+      '(("w" "Work Notes" plain (file "~/worg/cardsw.org")
          "* %u
 ** DID
-*** %?
-** NOTES/THOUGHTS
 *** 
-** ISSUES
+** TO DO NEXT
 *** 
-** NEEDS MORE ANALYSIS
+** TECH REQUESTS
+*** 
+** BIZ REQUESTS
+*** 
+** TECH THOUGHTS
+*** 
+** BIZ THOUGHTS
 *** ")))
 
 (setq org-agenda-files '("~/Dropbox/org/cards.txt"
