@@ -9,6 +9,8 @@
 ;; make Excel spreadsheets open in Excel/Numbers/OpenOffice
 (add-to-list 'org-file-apps '("\\.xls\\'" . default))
 (add-to-list 'org-file-apps '("\\.xlsx\\'" . default))
+(add-to-list 'org-file-apps '("\\.png\\'" . default))
+(add-to-list 'org-file-apps '("\\.jpg\\'" . default))
 
 (setq org-agenda-include-diary t)
 (setq org-src-fontify-natively t)
