@@ -4,6 +4,7 @@
 
 (define-key org-mode-map "\C-cl" 'org-store-link)
 (define-key org-mode-map "\C-ca" 'org-agenda)
+(define-key org-mode-map "\C-cc" 'org-capture)
 (define-key org-mode-map "\C-cb" 'org-iswitchb)
 
 ;; make Excel spreadsheets open in Excel/Numbers/OpenOffice
@@ -19,6 +20,18 @@
 (setq org-highest-priority ?G)
 (setq org-default-priority ?I)
 (setq org-lowest-priority ?O)
+
+(setq org-capture-templates
+      '(("W" "Work Notes" plain (file "~/worg/cardsw.org")
+         "* %u
+** DID
+*** %?
+** NOTES/THOUGHTS
+*** 
+** ISSUES
+*** 
+** NEEDS MORE ANALYSIS
+*** ")))
 
 (setq org-agenda-files '("~/Dropbox/org/cards.txt"
                          "~/Dropbox/org/investment.txt"
