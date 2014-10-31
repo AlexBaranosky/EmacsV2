@@ -29,9 +29,9 @@
 ***
 ** TO DO NEXT
 ***
-** TECH REQUESTS
+** TECH BLOCKERS
 ***
-** BIZ REQUESTS
+** BIZ BLOCKERS
 ***
 ** TECH THOUGHTS
 ***

@@ -51,13 +51,10 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-;; (js2r-add-keybindings-with-prefix "C-c C-t")
-
 ;; Save point position between sessions
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-(rename-modeline "js2-mode" js2-mode "JS2")
 (rename-modeline "clojure-mode" clojure-mode "CLJ")
 ;; (rename-modeline "emacs-lisp-mode" emacs-lisp-mode "ELisp") ;; TODO: does it work?
 
@@ -139,22 +136,3 @@
 (require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
-
-
-(require 'jsx-mode)
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-(setq jsx-indent-level 4)
-
-(require 'flycheck)
-(flycheck-define-checker jsxhint-checker
-  "A JSX syntax and style checker based on JSXHint."
-
-  :command ("jsxhint" source)
-  :error-patterns ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
-  :modes (jsx-mode))
-
-(add-hook 'jsx-mode-hook (lambda ()
-                           (flycheck-select-checker 'jsxhint-checker)
-                           (flycheck-mode)))
-(add-hook 'jsx-mode-hook (lambda ()
-                           (auto-complete-mode 1)))
