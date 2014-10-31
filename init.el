@@ -34,5 +34,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (load "~/.emacs.d/git-timemachine.el")
 (load "~/.emacs.d/scss-mode.el")
 (load "~/.emacs.d/el/neotree/neotree.el")
+(load "~/.emacs.d/jsx-mode.el")
 (load "~/.emacs.d/catchall.el")
 (load "~/.emacs.d/user.el")
