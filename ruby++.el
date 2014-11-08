@@ -78,3 +78,5 @@
 
 ;; (dolist (mode (list 'js-mode 'js2-mode 'js3-mode))
 ;;   (mmm-add-mode-ext-class mode "\\.js\\.erb\\'" 'erb))
+
+(setq ruby-deep-indent-paren nil)

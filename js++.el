@@ -12,18 +12,21 @@
 ;; (js2r-add-keybindings-with-prefix "C-c C-x")
 
 (require 'jsx-mode)
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
 (setq jsx-indent-level 4)
 
 (require 'flycheck)
-(flycheck-define-checker jsxhint-checker
-  "A JSX syntax and style checker based on JSXHint."
+;; (flycheck-define-checker jsxhint-checker
+;;   "A JSX syntax and style checker based on JSXHint."
 
-  :command ("jsxhint" source)
-  :error-patterns ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
-  :modes (jsx-mode))
+;;   :command ("jsxhint" source)
+;;   :error-patterns ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+;;   :modes (jsx-mode js2-mode))
 
-(add-hook 'jsx-mode-hook (lambda ()
-                           (flycheck-select-checker 'jsxhint-checker)
-                           (flycheck-mode)
-                           (auto-complete-mode 1)))
+(defun jsfoo-hook ()
+;;  (flycheck-select-checker 'jsxhint-checker)
+  (flycheck-mode)
+  (auto-complete-mode 1))
+
+(add-hook 'jsx-mode-hook 'jsfoo-hook) 
+(add-hook 'js2-mode-hook 'jsfoo-hook)

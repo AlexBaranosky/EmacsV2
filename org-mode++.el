@@ -18,20 +18,20 @@
 (setq org-agenda-start-with-follow-mode t)
 ;;(setq org-startup-with-inline-images t)
 
-(setq org-highest-priority ?G)
-(setq org-default-priority ?I)
-(setq org-lowest-priority ?O)
+(setq org-highest-priority ?G) ;; Urgent
+(setq org-default-priority ?I) ;; Important
+(setq org-lowest-priority ?X)  ;; Exciting
 
 (setq org-capture-templates
       '(("w" "Work Notes" plain (file "~/worg/cardsw.org")
          "* %u
-** DID
-***
-** TO DO NEXT
-***
 ** TECH BLOCKERS
 ***
 ** BIZ BLOCKERS
+***
+** DID
+***
+** TO DO NEXT
 ***
 ** TECH THOUGHTS
 ***
@@ -68,6 +68,9 @@
           (org-deadline-warning-days 93)
           (org-agenda-entry-types '(:deadline))))
 
+        ("p" "Delegated to Paula" todo "DELEGATED_PAULA"
+         ((org-agenda-sorting-strategy '(priority-down todo-state-up))))
+
         ("h" "Blocked" todo "BLOCKED_ON"
          ((org-agenda-sorting-strategy '(priority-down todo-state-up))))
 
@@ -89,6 +92,32 @@
           (lambda ()
             (define-key org-mode-map "\C-n" 'org-next-link)
             (define-key org-mode-map "\C-p" 'org-previous-link)))
+
+(defun org-transpose-paragraphs (arg)
+  (interactive)
+  (when (and (not (or (org-at-table-p) (org-on-heading-p) (org-at-item-p)))
+             (thing-at-point 'sentence))
+    (transpose-paragraphs arg)
+    (backward-paragraph)
+    (re-search-forward "[[:graph:]]")
+    (goto-char (match-beginning 0))
+    t))
+
+(add-to-list 'org-metaup-hook
+             (lambda () (interactive) (org-transpose-paragraphs -1)))
+(add-to-list 'org-metadown-hook
+             (lambda () (interactive) (org-transpose-paragraphs 1)))
+
+(defun org-sort-list-by-checkbox-type ()
+  "Sort list items according to Checkbox state."
+  (interactive)
+  (org-sort-list
+   nil ?f
+   (lambda ()
+     (if (looking-at org-list-full-item-re)
+         (cdr (assoc (match-string 3)
+                     '(("[X]" . 1) ("[-]" . 2) ("[ ]" . 3) (nil . 4))))
+       4))))
 
 ;; (setq org-footnote-section nil)
 ;; (setq org-ctrl-c-ctrl-c-hook '(org-babel-hash-at-point
