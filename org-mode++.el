@@ -127,10 +127,6 @@
     (org-return)
     (insert "#+END_QUOTE")))
 
-(fset 'org-music
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\274#music
-" 0 "%d")) arg)))
-
 (defun org-music ()
   (interactive)
   (beginning-of-buffer)
