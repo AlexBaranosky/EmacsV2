@@ -119,6 +119,17 @@
                      '(("[X]" . 1) ("[-]" . 2) ("[ ]" . 3) (nil . 4))))
        4))))
 
+(fset 'org-quote
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([35 43 66 69 71 73 78 95 83 82 backspace backspace 81 85 79 84 69 return return 35 43 69 78 68 95 81 85 79 84 69 up] 0 "%d")) arg)))
+
+
+(fset 'org-work-notes
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 33554464 3 46 return C-return 68 73 68 73 backspace 134217822 5 C-return 73 83 83 85 69 83 up M-right down M-right C-return 78 69 69 68 83 33554464 77 79 82 69 33554464 65 78 65 76 89 83 73 83 C-return 80 79 83 83 73 66 73 76 73 84 73 69 83 up up up C-return M-right down C-return M-right down C-return M-right down C-return M-right up up up up up up up up 1] 0 "%d")) arg)))
+
+(fset 'org-music
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\274#music
+" 0 "%d")) arg)))
+
 ;; (setq org-footnote-section nil)
 ;; (setq org-ctrl-c-ctrl-c-hook '(org-babel-hash-at-point
 ;;                                org-babel-execute-safely-maybe))

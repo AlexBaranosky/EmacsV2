@@ -27,6 +27,40 @@
      '(defadvice ,mode (after rename-modeline activate)
         (setq mode-name ,new-name))))
 
+(defun todo-comment ()
+  (interactive)
+  (insert "TODO: ")
+  (emacs++-insert-date)
+  (insert " - ")
+  (move-beginning-of-line nil)
+  (comment-region (line-beginning-position) (line-end-position))
+  (move-end-of-line nil))
+
+(defun comment-dwim++ (&optional arg)
+  "Replacement for the comment-dwim command. If no region is selected and we are
+   not at the end of the line, then comment current line. Replaces default
+   behaviour of comment-dwim, when it inserts comment at the end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (not (region-active-p))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-dwim arg)))
+
+(defun paredit-comment-dwim++ (&optional arg)
+  "Replacement for the comment-dwim command. If no region is selected and we are
+   not at the end of the line, then comment current line. Replaces default
+   behaviour of comment-dwim, when it inserts comment at the end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (not (region-active-p))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (paredit-comment-dwim arg)))
+
+(global-set-key [(super t)] 'todo-comment)
+(global-set-key (kbd "M-;") 'comment-dwim++)
+(eval-after-load "paredit"
+  #'(define-key paredit-mode-map (kbd "M-;") 'paredit-comment-dwim++))
+
 (defun rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -310,18 +344,3 @@ buffer is not visiting a file."
 
 (fset 'gui-diff-last-failure
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 97 99 116 117 97 108 58 13 134217734 19 40 61 13 right 201326624 201326624 134217847 134217790 40 103 117 105 45 100 105 102 102 32 25 41] 0 "%d")) arg)))
-
-(fset 'split-let
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 112 97 return 93 91 backspace 91 left 32 40 108 101 116 backspace backspace backspace backspace 134217848 112 return 40 108 101 116 67108905 M-left left return 3 110] 0 "%d")) arg)))
-
-(fset 'todo-comment
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([59 59 32 84 79 68 79 58 33554464 65 108 101 120 32 45 32 134217848 101 109 97 99 115 45 backspace 43 43 45 105 110 115 101 114 116 45 100 97 116 101 return 32 45 32] 0 "%d")) arg)))
-
-(global-set-key [(super t)] 'todo-comment)
-
-(fset 'org-quote
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([35 43 66 69 71 73 78 95 83 82 backspace backspace 81 85 79 84 69 return return 35 43 69 78 68 95 81 85 79 84 69 up] 0 "%d")) arg)))
-
-
-(fset 'org-work-notes
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 33554464 3 46 return C-return 68 73 68 73 backspace 134217822 5 C-return 73 83 83 85 69 83 up M-right down M-right C-return 78 69 69 68 83 33554464 77 79 82 69 33554464 65 78 65 76 89 83 73 83 C-return 80 79 83 83 73 66 73 76 73 84 73 69 83 up up up C-return M-right down C-return M-right down C-return M-right down C-return M-right up up up up up up up up 1] 0 "%d")) arg)))
